@@ -129,7 +129,7 @@ function applyDiscount(price, discountPercentage) {
  *
  * Example
  * > sayHello("codeup") // returns "Hello, codeup!"
- */
+ */git
 function sayhello(hello) {() {
     return 'hello '+ name;
 }
