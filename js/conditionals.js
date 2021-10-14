@@ -18,10 +18,19 @@
  *
  * Test your function by passing various string literals to it and
  * console.logging the function's return value
- */ analyzeColor('orange') // returns "the volcanco was very orange"
-
-
-
+ */
+function analyzeColor(color) {
+    if (color === "blue"){
+        return "blue is the color of the sky";
+    }else if (color === "red"){
+        return "strawberry are red";
+    }else {
+        return  "i dont know anything about" + color
+    }
+}
+console.log((analyzeColor("blue")))
+console.log((analyzeColor("red")))
+console.log((analyzeColor("cyan")))
 // Don't change the next two lines!
 // These lines create two variables for you:
 // - `colors`: a list of the colors of the rainbow
@@ -39,15 +48,28 @@ var colors = ['red','orange','yellow','green', 'blue','indigo','violet'];
  * TODO:
  * Refactor your above function to use a switch-case statement
  */
-
+function analyazecolorswitch(color) {
+    switch(color){
+        case "blue":
+            return "blue is the color of the sky.";
+        case "red":
+            return "strawberry are red";
+        default:
+            return  "i dont know anything abbout" + color;
+}
+console.log("~~~")
+    console.log((analyzeColor("blue")));
+    console.log((analyzeColor("red")));
+    console.log((analyzeColor("cyan")));
 /**
  * TODO:
  * Prompt the user for a color when the page loads, and pass the input from the
  * user to your `analyzeColor` function. Alert the return value from your
  * function to show it to the user.
  */
-function analyzeColor ('blue')
 
+var usercolor = prompt("what is your favorite color?");
+alert(analyzeColor(usercolor));
 /* ########################################################################## */
 
 /**
@@ -69,7 +91,21 @@ function analyzeColor ('blue')
  * Test your function by passing it various values and checking for the expected
  * return value.
  */
-
+function  calculatetotal(luckyNumber,totalamount){
+    if (luckyNumber === 0 ) {
+        return"your lucky number is totalamount"
+    }else if (luckyNumber === 1) {
+        return totalamount -(totalamount * 0.1);
+    }else if (luckyNumber === 2) {
+        return  totalamount - (totalamount * 0.25);
+    }else  if (luckyNumber === 3) {
+        return  totalamount -(totalamount * 0.35);
+    }else  if (luckyNumber === 4) {
+        return  totalamount -(totalamount * 0.50);
+    }else  if (luckyNumber === 5) {
+        return totalamount - (totalamount * 1)
+    }
+}
 /**
  * TODO:
  * Uncomment the line below to generate a random number between 0 and 6.
@@ -79,7 +115,8 @@ function analyzeColor ('blue')
  */
 // Generate a random number between 0 and 6
 // var luckyNumber = Math.floor(Math.random() * 6);
-
+prompt('what is your total bill');
+calculatetotal('luckynumber was'+ luckynumber)
 /**
  * TODO:
  * Write some JavaScript that uses a `confirm` dialog to ask the user if they
@@ -95,3 +132,20 @@ function analyzeColor ('blue')
  *
  * Can you refactor your code to use functions?
  * HINT: The way we prompt for a value could
+ */
+ function playnumbergame(number){
+     var usernum = parseFloat(number);
+ if (!isNaN(parseFloat(number))) {
+ if(usernum % 2 === 0) {
+     alert(usernum + "is an even number.")
+ }else  {
+     alert(usernum + "is an odd number.")
+ alert (usernum + "plus 100 is" + (usernum + 100));
+     if (usernum < 0) {
+ alert(usernum + "is a positive number.");
+} else {
+         alert("you entered in zero");
+     }
+ } else {
+     alert("you have enter in zero");
+     } else
