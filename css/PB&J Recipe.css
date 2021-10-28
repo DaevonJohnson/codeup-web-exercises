@@ -1,0 +1,10 @@
+body{
+    background-color: black;
+}
+
+.recipe-piece{
+    background-color: lawngreen;
+    height: 50px;
+    width: fit-content;
+    padding: 10px;
+}

@@ -28,3 +28,7 @@ var circle = {
 }
 var area =Math.PI * (Math.pow(circle.radius, 2))
 console.log(area);
+
+
+
+
