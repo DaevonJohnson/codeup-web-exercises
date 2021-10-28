@@ -29,11 +29,7 @@
 
     var unorderListOfPlants = "<ul><li>" + plantsArray.join("</Li></Li>") + "</li></ul>"
 
-
-
-
     console.log(unorderListOfPlants);
-
 
     document.write(unorderListOfPlants);
 
