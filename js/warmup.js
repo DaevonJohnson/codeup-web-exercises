@@ -92,3 +92,28 @@ var bBallPlayers = [
 ];
 console.log(bBallPlayers)
 var bBallPlayers: [{name: "Hakeem Olajuwon" string, height: number}, {name:"Muggsy Bogues" string, height: number}, {name: "Chris Paul" string, height: number}, {name: string, height: number}, string, height: number}, {name
+
+    var myCharacter = {
+        name: '',
+        hitPoints: 100,
+        class: 'Warrior',
+        abilities: {
+            attack: function(obj) {},
+        },
+        magicPoints: 0,
+        weapon: hammer {
+            name: 'Silver Sabre',
+            damage: 16,
+            type: 'sword'
+        }
+    }
+
+    var enemy = {
+        name: 'Savage Orc',
+        hitPoints: 100,
+        class: 'Warrior',
+        magicPoints: 0,
+
+
+    }
+    ex. random(["rock","paper","scissors","lizard","spock"])
