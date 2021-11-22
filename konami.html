@@ -2,21 +2,58 @@
 <html>
 <head>
     <title>Konami Code</title>
+    <script src="js/konami.js"></script>
 </head>
 <body>
-<h1>Konami Code</h1>
-
-<script src="/js/jquery.js"></script>
+<img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a58a7719-0dcf-4e0b-b7bb-d2b725dbbb8e/deiulh2-e958d335-e034-4117-8cdb-329a9a4e8562.png/v1/fill/w_1430,h_556,strp/spider_man_no_way_home___logo_png_oficial_2021_by_andrewvm_deiulh2-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTU2IiwicGF0aCI6IlwvZlwvYTU4YTc3MTktMGRjZi00ZTBiLWI3YmItZDJiNzI1ZGJiYjhlXC9kZWl1bGgyLWU5NThkMzM1LWUwMzQtNDExNy04Y2RiLTMyOWE5YTRlODU2Mi5wbmciLCJ3aWR0aCI6Ijw9MTQzMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.wLc9rO5SeHn-fjYrQMTMboZEgBvWEi8jmLfIKL0wrEY"style="width:20%">
+<div class="row">
+    <div class="column">
+        <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5b8d2b12-21e8-4931-8a6d-fb9ecdd60383/dd78bvn-c3698b5d-e4e4-4314-835a-c14f323befb3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzViOGQyYjEyLTIxZTgtNDkzMS04YTZkLWZiOWVjZGQ2MDM4M1wvZGQ3OGJ2bi1jMzY5OGI1ZC1lNGU0LTQzMTQtODM1YS1jMTRmMzIzYmVmYjMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.1BIuy05gWM7vAYEl7b-Tn6JS7FRFXYmLsbX5sHlRRSM" alt="Snow" style="width:150%"class="right">
+    </div>
+    <div class="column">
+        <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f359881d-6bb2-4391-aba6-779f7084edd4/d9u57kv-178b9474-2e41-49f7-9b88-f614d7a6eac8.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2YzNTk4ODFkLTZiYjItNDM5MS1hYmE2LTc3OWY3MDg0ZWRkNFwvZDl1NTdrdi0xNzhiOTQ3NC0yZTQxLTQ5ZjctOWI4OC1mNjE0ZDdhNmVhYzgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.TU7jGC30J_LVt5LBXuRZbFAk79o_wbmmhFu22mfR5gU" alt="Forest" style="width:130%" class="center">
+    </div>
+    <div class="column">
+        <img src="https://purepng.com/public/uploads/large/purepng.com-spider-manspider-manspidermansuperherocomic-bookmarvel-comicscharacterstan-leegamesmovie-1701528656301fhxcj.png" alt="Mountains" style="width:150%"class="left">
+    </div>
 <script>
+
     "use strict";
 
     $(document).keyup(function(event){
         console.log(event.keyCode);
     });
-    document.addEventListener('keydown', onkeyup, false);
 
     var toby = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
     var andrew = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 </script>
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+    body {
+        background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg');
+        background-size: 2000px 900px;
+    }
+    * {
+        box-sizing: border-box;
+    }
+
+    .column {
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    </style>
 </body>
 </html>
