@@ -1,60 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Example jQuery Page</title>
+    <title>Online Store</title>
 </head>
 <body>
-<style>
-    body {
-        background-color: lightyellow;
+
+<h1>My Tool Store</h1>
+
+<table id="products">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Categories</th>
+        </tr>
+    </thead>
+    <tbody id="insertProducts"></tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script>
+    "use strict";
+
+ function titleCase(str) {
+    str = str.toLowerCase().split(' ');
+    for (let i = 0; i < str.length; i++) {
+        str[i] = str[i].charAt(0).toLowerCase() + str[i].slice(1);
     }
-</style>
-<h1>NBA Teams </h1>
+    return str.join(' ');
+}
+    // TODO: Create an AJAX GET request for the file under data/inventory.json
 
-<dl>
-    <h3>Brooklyn Nets</h3>
-    <li>A large feline inhabiting Bodmin Moor.</li>
+    // TODO: Take the data from inventory.json and append it to the products table
+    //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+    //             its contents and fields
+    //       HINT: You will want to target #insertProducts for your new HTML elements
+})();
+</script>
 
-    <h3>New York Knicks</h3>
-    <li>A sea serpent.</li>
-
-    <h3>Philadelphia 76ers</h3>
-    <li>A giant owl-like creature.</li>
-
-    <h3>Cleveland Cavaliers</h3>
-    <li>A large feline inhabiting Bodmin Moor.</li>
-
-    <h3>Chicago Bulls</h3>
-    <li>A sea serpent.</li>
-
-    <h3>Toronto Raptors</h3>
-    <li>A giant owl-like creature.</li>
-
-    <h3>Detroit Pistons</h3>
-    <li>A large feline inhabiting Bodmin Moor.</li>
-
-    <h3>Indiana Pacers</h3>
-    <li>A sea serpent.</li>
-
-    <h3>Milwaukee Bucks</h3>
-    <li>A giant owl-like creature.</li>
-
-</dl>
-<h3 id="ajax-blog.html">National Parks</h3>
-<ul id="national-parks">
-    <li>Arches</li>
-    <li>Badlands</li>
-    <li>Carlsbad Caverns</li>
-    <li>Denali</li>
-    <li>Everglades</li>
-</ul>
-<h3>State Parks of Texas</h3>
-<ul id="state-parks-texas">
-    <li>Abilene</li>
-    <li>Big Bend</li>
-    <li>Choke Canyon</li>
-    <li>Davis Mountains</li>
-    <li>Enchanted Rock</li>
-</ul>
 </body>
 </html>
