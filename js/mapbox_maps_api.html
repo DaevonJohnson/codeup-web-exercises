@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>mapbox_maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+    <link
+            href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css"
+            rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+    <link
+            rel="stylesheet"
+            href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+            type="text/css"
+    />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        marker {
+            background-image: url('https://www.applebees.com/-/media/Applebees/Images/logos/applebees-social-logo.ashx');
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGFldm9uam9obnNvbiIsImEiOiJja3dwNndrbWQwYTEwMnduemF0dGFvbDFuIn0.SY9--QRDEGpxjLu3W2qkGQ';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-98.493629,29.424122],
+        zoom: 12
+    });
+
+    const marker = new mapboxgl.Marker()
+        .setLngLat([-98.493629,29.424122])
+        .addTo(map);
+
+    const marker2 = new mapboxgl.Marker()
+        .setLngLat([-98.517180,29.357150])
+        .addTo(map);
+
+    const marker3 = new mapboxgl.Marker()
+        .setLngLat([-98.4004495,29.4944995])
+        .addTo(map);
+
+    const marker4 = new mapboxgl.Marker()
+        .setLngLat([-98.523026,29.597939])
+        .addTo(map);
+
+    const marker5 = new mapboxgl.Marker()
+        .setLngLat([-98.734752,29.537782])
+        .addTo(map);
+
+
+    const geocoder = new MapboxGeocoder({
+
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+        marker: true,
+        placeholder: 'Search bar',
+        proximity: {
+            longitude: -122.25948,
+            latitude: 37.87221
+        }
+    });
+
+
+    map.addControl(geocoder);
+
+
+    map.on('load', () => {
+        map.addSource('single-point', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': []
+            }
+        });
+
+
+        geocoder.on('result', (event) => {
+            map.getSource('single-point').setData(event.result.geometry);
+        });
+    });
+    for (const feature of geojson.features) {
+
+        const el = document.createElement('div');
+        el.className = 'marker';
+
+
+        new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+
+    }
+
+</script>
+</body>
+</html>

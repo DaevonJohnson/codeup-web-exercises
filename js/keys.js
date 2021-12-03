@@ -1,1 +1,1 @@
-var test = "Can we see this";
+const MAPBOX_KEY = "pk.eyJ1IjoiZGFldm9uam9obnNvbiIsImEiOiJja3dwNzQ3Nm4wN3dxMnBwNHBuZXo5cGIyIn0.sWFmCy8aBn4ci3xO_l_LWw";
