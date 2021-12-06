@@ -1,116 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>mapbox_maps</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
-  <link
-          href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css"
-          rel="stylesheet"
-  />
-  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
-  <link
-          rel="stylesheet"
-          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
-          type="text/css"
-  />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-    #map {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-    }
-    marker {
-      background-image: url('mapbox-icon.png');
-      background-size: cover;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      cursor: pointer;
-      color: red;
-    }
+    <meta charset="utf-8" />
+    <title>mapbox_maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+    <link
+            href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css"
+            rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+    <link
+            rel="stylesheet"
+            href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+            type="text/css"
+    />
+    <style>
+        body {
+            margin: 10%;
+            padding: 0;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        /*marker {*/
+        /*  background-image: url('https://www.applebees.com/-/media/Applebees/Images/logos/applebees-social-logo.ashx');*/
+        /*  background-size: cover;*/
+        /*  width: 50px;*/
+        /*  height: 50px;*/
+        /*  border-radius: 50%;*/
+        /*  cursor: pointer;*/
+        /*  color: red;*/
+        /*}*/
 
-  </style>
+    </style>
 </head>
 <body>
 <div id="map"></div>
 
 <script>
-  mapboxgl.accessToken = 'pk.eyJ1IjoiZGFldm9uam9obnNvbiIsImEiOiJja3dwNndrbWQwYTEwMnduemF0dGFvbDFuIn0.SY9--QRDEGpxjLu3W2qkGQ';
-  const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-98.493629,29.424122],
-    zoom: 12
-  });
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGFldm9uam9obnNvbiIsImEiOiJja3dwNndrbWQwYTEwMnduemF0dGFvbDFuIn0.SY9--QRDEGpxjLu3W2qkGQ';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-98.493629,29.424122],
+        zoom: 12
+    });
+    function genWeatherToday() {
 
-  const marker = new mapboxgl.Marker()
-          .setLngLat([-98.493629,29.424122])
-          .addTo(map);
+        marker.on('dragend', onDragEnd);
+        $('#card').html("");
+        var lngLat = marker.getLngLat();
+        var cord = "/" + lngLat.lat + "," + lngLat.lng;
+        var weather = $.get("https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}").done(function (data){
+            console.log(data)
+        })
+        var locale = reverseGeocode({lat: lngLat.lat, lng: lngLat.lng}, mapboxToken).then(function(result){
+            $("#local").html(result);
+        });
+        weather.done(function (data) {
+            console.log(data);
+            var content = "<h6>";
+            content += today;
+            content += "</h6>";
+            content += "<h3 class='temp'>";
+            content += Math.round(data.currently.temperature) + "°F";
+            content += "</h3>";
+            content += "<img class='icon1'>";
+            content += "<h6 class='summary'>";
+            content += "Summary: " + data.currently.summary;
+            content += "</h6>";
+            content += "<h5 class='rainChance'>";
+            content += "Chance of rain: " + data.currently.precipProbability * 100 + "%";
+            content += "</h5>";
+            content += "<h5 class='humidity'>";
+            content += "Humidity: " + Math.round(data.currently.humidity * 100) + "%";
+            content += "</h5>";
+            content += "<h5 class='windSpeed'>";
+            content += "Wind Speed: " + Math.round(data.currently.windSpeed) + " MPH";
+            content += "</h5>";
 
-  const marker2 = new mapboxgl.Marker()
-          .setLngLat([-98.517180,29.357150])
-          .addTo(map);
 
-  const marker3 = new mapboxgl.Marker()
-          .setLngLat([-98.4004495,29.4944995])
-          .addTo(map);
+            $('#card').append(content);
+            var icons = [
+                {
+                    summary: "clear-day",
+                    image: 'icons/clearDay.png'
+                },
+                {
+                    summary: "clear-night",
+                    image: 'icons/clearNight.png'
+                },
+                {
+                    summary: "rain",
+                    image: 'icons/rain.png'
+                },
+                {
+                    summary: "snow",
+                    image: 'icons/snow.png'
+                },
+                {
+                    summary: "sleet",
+                    image: 'icons/sleet.png'
+                },
+                {
+                    summary: "wind",
+                    image: 'icons/wind.png'
+                },
+                {
+                    summary: "fog",
+                    image: 'icons/fog.png'
+                },
+                {
+                    summary: "cloudy",
+                    image: 'icons/cloudy.png'
+                },
+                {
+                    summary: "partly-cloudy-day",
+                    image: 'icons/partlyCloudyDay.png'
+                },
+                {
+                    summary: "partly-cloudy-night",
+                    image: 'icons/partlyCloudyNight.png'
+                },
 
-  const marker4 = new mapboxgl.Marker()
-          .setLngLat([-98.523026,29.597939])
-          .addTo(map);
+            ];
+            var backgrounds = [
+                {
+                    summary: "clear-day",
+                    image: "url('icons/clearDay.gif')"
+                },
+                {
+                    summary: "clear-night",
+                    image: "url('icons/clearNight.gif')"
+                },
+                {
+                    summary: "rain",
+                    image: "url('icons/rain.gif')"
+                },
+                {
+                    summary: "snow",
+                    image: "url('icons/snow.gif')"
+                },
+                {
+                    summary: "sleet",
+                    image: "url('icons/snow.gif')"
+                },
+                {
+                    summary: "wind",
+                    image: "url('icons/wind.gif')"
+                },
+                {
+                    summary: "fog",
+                    image: "url('icons/fog.gif')"
+                },
+                {
+                    summary: "cloudy",
+                    image: "url('icons/cloudy.gif')"
+                },
+                {
+                    summary: "partly-cloudy-day",
+                    image: "url('icons/partlyCloudyDay.gif')"
+                },
+                {
+                    summary: "partly-cloudy-night",
+                    image: "url('icons/partlyCloudyNight.gif')"
+                },
 
-  const marker5 = new mapboxgl.Marker()
-          .setLngLat([-98.734752,29.537782])
-          .addTo(map);
-
-
-  const geocoder = new MapboxGeocoder({
-
-    accessToken: mapboxgl.accessToken,
-    mapboxgl: mapboxgl,
-    marker: true,
-    placeholder: 'Search bar',
-    proximity: {
-      longitude: -122.25948,
-      latitude: 37.87221
+            ];
+            icons.forEach(function (type) {
+                if (data.currently.icon === type.summary) {
+                    $('.icon1').attr('src', type.image);
+                }
+            });
+            backgrounds.forEach(function (type) {
+                if (data.currently.icon === type.summary) {
+                    $('#card').css('background-image', type.image);
+                }
+            });
+        });
+        weather.fail(function () {
+            console.log("try again")
+        })
     }
-  });
 
 
-  map.addControl(geocoder);
+    const marker = new mapboxgl.Marker()
+        .setLngLat([-98.493629,29.424122])
+        .addTo(map);
 
+    const geocoder = new MapboxGeocoder({
 
-  map.on('load', () => {
-    map.addSource('single-point', {
-      'type': 'geojson',
-      'data': {
-        'type': 'FeatureCollection',
-        'features': []
-      }
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+        marker: true,
+        placeholder: 'Search bar',
+        proximity: {
+            longitude: -122.25948,
+            latitude: 37.87221
+        }
     });
 
 
-    geocoder.on('result', (event) => {
-      map.getSource('single-point').setData(event.result.geometry);
+    map.addControl(geocoder);
+
+
+    map.on('load', () => {
+        map.addSource('single-point', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': []
+            }
+        });
+
+
+        geocoder.on('result', (event) => {
+            map.getSource('single-point').setData(event.result.geometry);
+        });
     });
-  });
-  for (const feature of geojson.features) {
+    for (const feature of geojson.features) {
 
-    const el = document.createElement('div');
-    el.className = 'marker';
+        const el = document.createElement('div');
+        el.className = 'marker';
 
 
-    new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+        new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
 
-  });
-
-  </body>
-  </html>
-
+    }
+</script>
+</body>
+</html>
