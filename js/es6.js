@@ -94,8 +94,7 @@ users.forEach(function(user) {
   developers.push(name + '\'s email is ' + email + name + ' knows ' + languages.join(', '));
 });
 
-  developers.push(`${name}'s email is ${email}
-  ${name} knows ${languages.join(', ')}`);
+  developers.push(`${name}'s email is ${email} ${name} knows ${languages.join(', ')}`);
 
  console.log(developers);
 
