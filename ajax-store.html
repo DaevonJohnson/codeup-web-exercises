@@ -33,10 +33,40 @@
 }
     // TODO: Create an AJAX GET request for the file under data/inventory.json
 
+    var table = $('#insertProducts');
+    var store = $.ajax('data/inventory.json');
+    store.done(function(data){
+        data.forEach(function(item){
+            table.append("<tr>" +
+
+                "<th>" + item.title + "</th>" +
+                "<th>" + item.quantity + "</th>" +
+                "<th>" + item.price + "</th>" +
+                "<th>" + item.categories + "</th>" +
+
+                + "</tr>");
+        });
+        console.log(data);
+        console.log(status);
+    });
     // TODO: Take the data from inventory.json and append it to the products table
+    {
+                type: "GET",
+                    data:
+                {
+                    title: 'hammer',
+                        price : ''
+                }
+            }
     //       HINT: Your data should come back as a JSON object; use console.log() to inspect
     //             its contents and fields
     //       HINT: You will want to target #insertProducts for your new HTML elements
+    $(function() {
+        $("#button").on("click", function() {
+            $("body").load('#insertProducts');
+            return false;
+        })
+    })
 })();
 </script>
 
